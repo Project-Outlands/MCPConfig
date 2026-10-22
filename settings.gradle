@@ -1,36 +1,22 @@
 rootProject.name = 'mcp_config'
 
-ext.versions = [] as Set
+// Every directory under versions/release/ is one mcp_config version project.
+// -Pver=1.12.2 restricts the build to a single version.
+def versionDir = file('versions/release')
 
-def addDirectory(path) {
-    path.eachDir() {
-        include it.path
-        project(':' + it.path).name = it.name
-        versions.add(it.name)
-    }
+def versions = versionDir.listFiles()
+        .findAll { it.directory }
+        .collect { it.name }
+        .findAll { !hasProperty('ver') || it == getProperty('ver') }
+        .sort()
+
+if (hasProperty('ver') && versions.isEmpty())
+    throw new GradleException("Unknown version '${getProperty('ver')}', expected one of: "
+            + versionDir.listFiles().findAll { it.directory }.collect { it.name }.sort())
+
+versions.each { version ->
+    include ":$version"
+    project(":$version").projectDir = new File(versionDir, version)
 }
 
-def type = hasProperty('type') ? getProperty('type').toLowerCase() : 'release'
-
-if ('release' == type) {
-    addDirectory(new File('./versions/release/'))
-} else if ('snapshot' == type) {
-    if (hasProperty('ver')) {
-        addDirectory(new File('./versions/snapshot/' + getProperty('ver')))
-    } else {
-        new File('./versions/snapshot/').eachDir() {
-            addDirectory(it)
-        }
-    }
-} else if ('pre' == type) {
-    if (hasProperty('ver')) {
-        addDirectory(new File('./versions/pre/' + getProperty('ver')))
-    } else {
-        new File('./versions/pre/').eachDir() {
-            addDirectory(it)
-        }
-    }
-}
-
-println('Versions: ' + versions)
-
+println 'Versions: ' + versions

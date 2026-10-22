@@ -19,4 +19,30 @@ ALL RIGHTS RESERVED.
 
 # How to Use:
 
-This is basic gradle setup, read the gradle. This is INTENTIONALLY not holding your hand because this is a powerful tool that if used incorrectly can cause a lot of issues. Spend a few minuetes reading the gradle and you can figure things out.
+This repo only builds and publishes the `mcp_config` zip (mappings metadata + patches). The patched
+sources themselves are produced by the consumer (Mavenizer / ForgeDev), so everything related to
+decompiling, mcinjecting or scaffolding a dev workspace has been removed from the build.
+
+```bash
+./gradlew makeZip                                   # build only -> build/distributions/mcp_config-<version>.zip
+
+./gradlew publish \
+    -PmavenUser=<user> -PmavenPassword=<token>      # publish to https://maven.outlands.top/releases
+
+./gradlew publish -PmavenUrl=file:///tmp/mcprepo    # publish into a local directory instead
+```
+
+Versioning: every publish creates `de.oceanlabs.mcp:mcp_config:<mc>-<yyyyMMdd.HHmmss>`, so consumers
+must pin an exact timestamp. Both parts can be pinned for idempotent re-runs:
+
+```bash
+./gradlew publish -PmcpTimestamp=20261022.210720            # rebuild the same version
+./gradlew publish -PmcpVersion=1.12.2-20261022.210720       # pin the whole version
+```
+
+Credentials can also come from the `MAVEN_USER` / `MAVEN_PASSWORD` environment variables; publishing
+to an `http(s)` repository without them fails fast instead of silently writing somewhere else.
+
+Adding a version means adding `versions/release/<mc version>/` with `config.json`, `joined.tsrg`,
+`constructors.txt`, `exceptions.txt` and `patches/`; `settings.gradle` picks it up automatically
+(`-Pver=<mc version>` restricts a build to one of them).
