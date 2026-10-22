@@ -69,7 +69,7 @@ static def mavenPath(dep) {
 tasks.register('downloadVersionManifest', Download) {
     src 'https://launchermeta.mojang.com/mc/game/version_manifest.json'
     dest layout.buildDirectory.file('versions/version_manifest.json')
-    overwrite true
+    overwrite false
     retries 5
     connectTimeout 30000
     readTimeout 120000

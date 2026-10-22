@@ -1,0 +1,15 @@
+--- a/net/minecraft/util/math/Cartesian.java
++++ b/net/minecraft/util/math/Cartesian.java
+@@ -59,9 +59,9 @@
+ 
+       @Override
+       public Iterator<T[]> iterator() {
+-         return this.field_179428_b.length <= 0
+-            ? Collections.singletonList((T)Cartesian.func_179319_b(this.field_179429_a, 0)).iterator()
+-            : new Cartesian.Product.ProductIterator<>(this.field_179429_a, this.field_179428_b);
++         return (Iterator<T[]>)(this.field_179428_b.length <= 0
++            ? Collections.singletonList(Cartesian.func_179319_b(this.field_179429_a, 0)).iterator()
++            : new Cartesian.Product.ProductIterator<>(this.field_179429_a, this.field_179428_b));
+       }
+ 
+       static class ProductIterator<T> extends UnmodifiableIterator<T[]> {

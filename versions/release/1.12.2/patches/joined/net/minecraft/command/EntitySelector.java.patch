@@ -9,50 +9,7 @@
                       }
  
                       return Collections.emptyList();
-@@ -274,19 +274,20 @@
- 
-    private static List<Predicate<Entity>> func_179659_d(Map<String, String> p_179659_0_) {
-       List<Predicate<Entity>> list = Lists.newArrayList();
--      final String s = func_179651_b(p_179659_0_, field_190847_u);
-+      String s = func_179651_b(p_179659_0_, field_190847_u);
-       final boolean flag = s != null && s.startsWith("!");
-       if (flag) {
-          s = s.substring(1);
-       }
-
-       if (s != null) {
-+         final String s2 = s;
-          list.add(new Predicate<Entity>() {
-             public boolean apply(@Nullable Entity p_apply_1_) {
-                if (!(p_apply_1_ instanceof EntityLivingBase)) {
-                   return false;
-                } else {
-                   EntityLivingBase entitylivingbase = (EntityLivingBase)p_apply_1_;
-                   Team team = entitylivingbase.func_96124_cp();
-                   String s1 = team == null ? "" : team.func_96661_b();
--                  return s1.equals(s) != flag;
-+                  return s1.equals(s2) != flag;
-@@ -344,16 +345,17 @@
- 
-    private static List<Predicate<Entity>> func_179647_f(Map<String, String> p_179647_0_) {
-       List<Predicate<Entity>> list = Lists.newArrayList();
--      final String s = func_179651_b(p_179647_0_, field_190848_v);
-+      String s = func_179651_b(p_179647_0_, field_190848_v);
-       final boolean flag = s != null && s.startsWith("!");
-       if (flag) {
-          s = s.substring(1);
-       }
- 
-       if (s != null) {
-+         final String s1 = s;
-          list.add(new Predicate<Entity>() {
-             public boolean apply(@Nullable Entity p_apply_1_) {
--               return p_apply_1_ != null && p_apply_1_.func_70005_c_().equals(s) != flag;
-+               return p_apply_1_ != null && p_apply_1_.func_70005_c_().equals(s1) != flag;
-             }
-          });
-       }
-@@ -530,7 +532,7 @@
+@@ -532,7 +532,7 @@
  
        Entity entity = p_179658_2_.func_174793_f();
        if (entity != null && p_179658_3_.isAssignableFrom(entity.getClass()) && i == 1 && p_179658_0_.contains(entity) && !"r".equals(p_179658_4_)) {

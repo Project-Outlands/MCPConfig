@@ -21,7 +21,7 @@
     "repo": "https://maven.outlands.top/releases/"
   },
   "fernflower": {
-    "version": "org.vineflower:vineflower:1.11.2",
+    "version": "org.vineflower:vineflower:1.12.0",
     "java_version": 25,
     "args": [
       "-din=1",
@@ -32,6 +32,7 @@
       "-iec=1",
       "-jvn=1",
       "-nls=1",
+      "--prettify-ifs=false",
       "-log=TRACE",
       "-cfg",
       "{libraries}",
