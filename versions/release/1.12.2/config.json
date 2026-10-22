@@ -85,7 +85,7 @@
     ]
   },
   "process": {
-    "version": "net.minecraftforge:mcpcleanup:2.3.2:fatjar",
+    "version": "net.minecraftforge:mcpcleanup:2.3.6:fatjar",
     "args": [
       "--input",
       "{input}",
