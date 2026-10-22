@@ -1,31 +1,98 @@
 {
-    "java_target": 25,
-    "mcinjector": {
-        "version": "de.oceanlabs.mcp:mcinjector:3.8.4:fatjar",
-        "java_version": 25,
-        "args": ["--in", "{input}", "--out", "{output}", "--log", "{log}", "--lvt=LVT", "--exc", "{exceptions}", "--acc", "{access}", "--ctr", "{constructors}"],
-        "repo": "https://maven.outlands.top/releases/"
-    },
-    "fernflower": {
-        "version": "org.vineflower:vineflower:1.11.2",
-        "java_version": 25,
-        "args": ["-din=1", "-rbr=1", "-dgs=1", "-asc=1", "-rsy=1", "-iec=1", "-jvn=1", "-nls=1", "-log=TRACE", "-cfg", "{libraries}", "{input}", "{output}"],
-        "jvmargs": ["-Xmx4G"],
-        "repo": "https://repo1.maven.org/maven2/"
-    },
-    "merge": {
-        "version": "net.minecraftforge:mergetool:1.1.7:fatjar",
-        "args": ["--client", "{client}", "--server", "{server}", "--ann", "{version}", "--output", "{output}", "--inject", "false"],
-        "jvmargs": []
-    },
-    "rename": {
-        "version": "net.md-5:SpecialSource:1.11.3:shaded",
-        "args": ["--in-jar", "{input}", "--out-jar", "{output}", "--srg-in", "{mappings}", "--kill-source"],
-        "repo": "https://repo1.maven.org/maven2/"
-    },
-    "libraries": {
-        "client": ["com.google.code.findbugs:jsr305:3.0.2"],
-        "server": ["com.google.code.findbugs:jsr305:3.0.2"],
-        "joined": ["com.google.code.findbugs:jsr305:3.0.2", "net.minecraftforge:mergetool:1.1.7:api"]
-    }
+  "java_target": 25,
+  "mcinjector": {
+    "version": "de.oceanlabs.mcp:mcinjector:3.8.4:fatjar",
+    "java_version": 25,
+    "args": [
+      "--in",
+      "{input}",
+      "--out",
+      "{output}",
+      "--log",
+      "{log}",
+      "--lvt=LVT",
+      "--exc",
+      "{exceptions}",
+      "--acc",
+      "{access}",
+      "--ctr",
+      "{constructors}"
+    ],
+    "repo": "https://maven.outlands.top/releases/"
+  },
+  "fernflower": {
+    "version": "org.vineflower:vineflower:1.11.2",
+    "java_version": 25,
+    "args": [
+      "-din=1",
+      "-rbr=1",
+      "-dgs=1",
+      "-asc=1",
+      "-rsy=1",
+      "-iec=1",
+      "-jvn=1",
+      "-nls=1",
+      "-log=TRACE",
+      "-cfg",
+      "{libraries}",
+      "{input}",
+      "{output}"
+    ],
+    "jvmargs": [
+      "-Xmx4G"
+    ],
+    "repo": "https://repo1.maven.org/maven2/"
+  },
+  "merge": {
+    "version": "net.minecraftforge:mergetool:1.1.7:fatjar",
+    "args": [
+      "--client",
+      "{client}",
+      "--server",
+      "{server}",
+      "--ann",
+      "{version}",
+      "--output",
+      "{output}",
+      "--inject",
+      "false"
+    ],
+    "jvmargs": []
+  },
+  "rename": {
+    "version": "net.md-5:SpecialSource:1.11.3:shaded",
+    "args": [
+      "--in-jar",
+      "{input}",
+      "--out-jar",
+      "{output}",
+      "--srg-in",
+      "{mappings}",
+      "--kill-source"
+    ],
+    "repo": "https://repo1.maven.org/maven2/"
+  },
+  "libraries": {
+    "client": [
+      "com.google.code.findbugs:jsr305:3.0.2"
+    ],
+    "server": [
+      "com.google.code.findbugs:jsr305:3.0.2"
+    ],
+    "joined": [
+      "com.google.code.findbugs:jsr305:3.0.2",
+      "net.minecraftforge:mergetool:1.1.7:api"
+    ]
+  },
+  "process": {
+    "version": "net.minecraftforge:mcpcleanup:2.3.2:fatjar",
+    "args": [
+      "--input",
+      "{input}",
+      "--output",
+      "{output}"
+    ],
+    "jvmargs": [],
+    "repo": "https://maven.outlands.top/releases/"
+  }
 }

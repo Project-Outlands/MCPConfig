@@ -180,6 +180,13 @@ subprojects {
             args: ['--in-jar', '{input}', '--out-jar', '{output}', '--srg-in', '{mappings}'],
             repo: 'https://repo1.maven.org/maven2/'
         ]
+        PROCESSOR = CONFIG.get('process', null) == null ? null : [
+            version: CONFIG.process.version,
+            args: CONFIG.process.get('args', ['--input', '{input}', '--output', '{output}']),
+            jvmargs: CONFIG.process.get('jvmargs', []),
+            path: mavenPath(CONFIG.process.version),
+            repo: CONFIG.process.get('repo', FORGE_MAVEN)
+        ]
         RENAMETOOL = [
             version: CONFIG.get('rename', renameDefault).version,
             args: CONFIG.rename.get('args', []),
@@ -1089,11 +1096,17 @@ subprojects {
                     }
                 }
                 steps steps_def
+                if (PROCESSOR != null) {
+                    steps_def.each { side, list ->
+                        list.add([type: 'process', input: '{patchOutput}'])
+                    }
+                }
                 functions {
                     decompile CONFIG.fernflower
                     mcinject CONFIG.mcinjector
                     merge CONFIG.merge
                     rename CONFIG.rename
+                    if (PROCESSOR != null) process PROCESSOR
                 }
                 libraries CONFIG.libraries
             }
