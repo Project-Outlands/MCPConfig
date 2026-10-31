@@ -2,7 +2,6 @@
   "java_target": 25,
   "mcinjector": {
     "version": "de.oceanlabs.mcp:mcinjector:3.8.11:fatjar",
-    "java_version": 25,
     "args": [
       "--in",
       "{input}",
