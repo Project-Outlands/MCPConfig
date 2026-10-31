@@ -83,7 +83,7 @@
     ],
     "joined": [
       "com.google.code.findbugs:jsr305:3.0.2",
-      "net.minecraftforge:mergetool:1.1.7:api"
+      "net.minecraftforge:mergetool-fml:1.0"
     ]
   },
   "process": {
