@@ -62,17 +62,17 @@
     "jvmargs": []
   },
   "rename": {
-    "version": "net.md-5:SpecialSource:1.11.6:shaded",
+    "version": "net.minecraftforge:renamer:2.2.8:all",
     "args": [
-      "--in-jar",
+      "--input",
       "{input}",
-      "--out-jar",
+      "--output",
       "{output}",
-      "--srg-in",
+      "--map",
       "{mappings}",
-      "--kill-source"
+      "--strip-sigs"
     ],
-    "repo": "https://repo1.maven.org/maven2/"
+    "repo": "https://maven.minecraftforge.net/"
   },
   "libraries": {
     "client": [
