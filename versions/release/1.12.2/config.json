@@ -1,7 +1,7 @@
 {
   "java_target": 25,
   "mcinjector": {
-    "version": "de.oceanlabs.mcp:mcinjector:3.8.11:fatjar",
+    "version": "de.oceanlabs.mcp:mcinjector:3.8.12:fatjar",
     "args": [
       "--in",
       "{input}",
@@ -44,7 +44,7 @@
     "repo": "https://repo1.maven.org/maven2/"
   },
   "merge": {
-    "version": "net.minecraftforge:mergetool:1.2.5:fatjar",
+    "version": "top.outlands:mergetool:1.2.11:fatjar",
     "args": [
       "--merge",
       "--client",
@@ -58,7 +58,7 @@
       "--inject",
       "false"
     ],
-    "jvmargs": []
+    "repo": "https://maven.outlands.top/releases/"
   },
   "rename": {
     "version": "net.minecraftforge:renamer:2.2.8:all",
@@ -82,7 +82,7 @@
     ],
     "joined": [
       "com.google.code.findbugs:jsr305:3.0.2",
-      "net.minecraftforge:mergetool-fml:1.0"
+      "top.outlands:mergetool-fml:1.0"
     ]
   },
   "process": {
@@ -93,7 +93,6 @@
       "--output",
       "{output}"
     ],
-    "jvmargs": [],
     "repo": "https://maven.minecraftforge.net/"
   }
 }

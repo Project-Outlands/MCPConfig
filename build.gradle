@@ -190,12 +190,15 @@ subprojects {
                         downloadFile(art.url, target)
                 }
             }
+            def libraryRepos = ['top.outlands': 'https://maven.outlands.top/releases/']
             CONFIG.get('libraries', [:]).each { side, libs ->
                 libs.each { art ->
                     def path = mavenPath(art)
                     def target = file(PATH_CACHED_LIBRARIES + path)
-                    if (!target.exists())
-                        downloadFile(FORGE_MAVEN + path, target)
+                    if (!target.exists()) {
+                        def repo = libraryRepos.get(art.split(':', 2)[0], FORGE_MAVEN)
+                        downloadFile(repo + path, target)
+                    }
                 }
             }
         }
